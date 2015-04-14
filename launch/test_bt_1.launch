@@ -1,16 +1,17 @@
 <launch>
 
-  <node name="task_manager" pkg="bt_actions" type="task_manager.py" />
-  <node name="remove_object" pkg="bt_actions" type="remove_object.py" />
-  <node name="list_done" pkg="bt_actions" type="ListDone" />
+  <node name="task_manager" pkg="amazon_challenge_bt_actions" type="task_manager" />
+  <node name="remove_object" pkg="amazon_challenge_bt_actions" type="remove_object" />
+  <node name="list_done" pkg="amazon_challenge_bt_actions" type="ListDone" />
 
-  <node name="object_grasped" pkg="bt_actions" type="ObjectGraspedServer" />
+  <node name="object_grasped" pkg="amazon_challenge_bt_actions" type="ObjectGraspedServer" />
 
-  <node name="tree" pkg="bt" type="tree" />
+  <node name="tree" pkg="amazon_challenge_bt_core" type="tree" />
 
   <include file="$(find amazon_challenge_motion)/launch/arm_position_server.launch" />
 
-  <include file="$(find pr2_ft_moveit_config)/launch/move_group.launch" />
+  <!-- <include file="$(find pr2_ft_moveit_config)/launch/move_group.launch" /> -->
   
+  <!-- rostopic pub /object_grasped std_msgs/String "data: 'FAILURE'"  -r 1 -->
 
 </launch>
