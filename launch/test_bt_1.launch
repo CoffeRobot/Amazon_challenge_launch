@@ -10,7 +10,7 @@
 
   <include file="$(find amazon_challenge_motion)/launch/arm_position_server.launch" />
 
-  <!-- <include file="$(find pr2_ft_moveit_config)/launch/move_group.launch" /> -->
+  <include file="$(find pr2_ft_moveit_config)/launch/move_group.launch" />
   
   <!-- rostopic pub /object_grasped std_msgs/String "data: 'FAILURE'"  -r 1 -->
 
