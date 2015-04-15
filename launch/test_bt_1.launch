@@ -1,5 +1,7 @@
 <launch>
 
+  <arg name="sim" default="false" />
+
   <node name="task_manager" pkg="amazon_challenge_bt_actions" type="task_manager" />
   <node name="remove_object" pkg="amazon_challenge_bt_actions" type="remove_object" />
   <node name="list_done" pkg="amazon_challenge_bt_actions" type="ListDone" />
@@ -10,8 +12,12 @@
 
   <include file="$(find amazon_challenge_motion)/launch/arm_position_server.launch" />
 
-  <include file="$(find pr2_ft_moveit_config)/launch/move_group.launch" />
+  <!-- if sim:=true -->
+  <include file="$(find pr2_gazebo)/launch/pr2_empty_world.launch" if="$(arg sim)"/>
+  <include file="$(find pr2_moveit_config)/launch/move_group.launch" if="$(arg sim)"/>
+
+  <include file="$(find pr2_ft_moveit_config)/launch/move_group.launch" unless="$(arg sim)"/>
   
-  <!-- rostopic pub /object_grasped std_msgs/String "data: 'FAILURE'"  -r 1 -->
+  <node name="publish_grasp_failure" pkg="amazon_challenge_launch" type="publish_grasp_failure" />
 
 </launch>
