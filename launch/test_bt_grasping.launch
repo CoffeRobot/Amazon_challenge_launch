@@ -1,0 +1,29 @@
+<launch>
+
+  <arg name="sim" default="false" />
+
+  <node name="task_manager" pkg="amazon_challenge_bt_actions" type="task_manager" />
+
+  <node name="remove_object" pkg="amazon_challenge_bt_actions" type="remove_object" />
+  <node name="list_done" pkg="amazon_challenge_bt_actions" type="ListDone" />
+
+  <node name="object_grasped" pkg="amazon_challenge_bt_actions" type="ObjectGraspedServer" />
+
+
+  <node name="tree" pkg="amazon_challenge_bt_core" type="tree" />
+
+  <include file="$(find amazon_challenge_motion)/launch/arm_position_server.launch" />
+
+  <!-- if sim:=true -->
+  <include file="$(find pr2_gazebo)/launch/pr2_empty_world.launch" if="$(arg sim)"/>
+  <include file="$(find pr2_moveit_config)/launch/move_group.launch" if="$(arg sim)"/>
+
+  <include file="$(find pr2_ft_moveit_config)/launch/move_group.launch" unless="$(arg sim)"/>
+  
+  <node name="grasp_object" pkg="pr2_amazon_challenge_sim" type="grasping_action.py" />
+  <node name="amazon_detector" pkg="pr2_amazon_challenge_sim" type="detector_action.py" />
+  <node name="object_dropped" pkg="amazon_challenge_bt_actions" type="ObjectDroppedServer" />
+  <node name="drop_object" pkg="amazon_challenge_motion" type="dropping_server" output="screen" />
+  <node name="arm_posed" pkg="amazon_challenge_bt_actions" type="ArmPosedServer" />
+
+</launch>
