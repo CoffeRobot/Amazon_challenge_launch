@@ -26,4 +26,12 @@
   <node name="drop_object" pkg="amazon_challenge_motion" type="dropping_server" output="screen" />
   <node name="arm_posed" pkg="amazon_challenge_bt_actions" type="ArmPosedServer" />
 
+  <node name="shelf_collision_planning_scene" pkg="amazon_challenge_motion" type="shelf_collision_planning_scene">
+    <param name="base_frame_id" value="/base_laser_link"/>
+    <param name="shelf_frame_id" value="/shelf_frame"/>
+    <param name="translation_tolerance" value="0.01"/>
+    <param name="rotation_tolerance" value="0.0873"/>
+  </node>
+	
+
 </launch>
