@@ -14,24 +14,11 @@
 
   <include file="$(find amazon_challenge_motion)/launch/pregrasp_server.launch" />
 
-  <!-- if sim:=true -->
-  <include file="$(find pr2_gazebo)/launch/pr2_empty_world.launch" if="$(arg sim)"/>
-  <include file="$(find pr2_moveit_config)/launch/move_group.launch" if="$(arg sim)"/>
-
-  <include file="$(find pr2_ft_moveit_config)/launch/move_group.launch" unless="$(arg sim)"/>
   
   <node name="grasp_object" pkg="amazon_challenge_grasping" type="grasping_action.py" output="screen"/>
   <node name="amazon_detector" pkg="amazon_challenge_grasping" type="detector_action.py" />
   <node name="object_dropped" pkg="amazon_challenge_bt_actions" type="ObjectDroppedServer" />
   <node name="drop_object" pkg="amazon_challenge_motion" type="dropping_server" output="screen" />
   <node name="arm_posed" pkg="amazon_challenge_bt_actions" type="ArmPosedServer" />
-
-  <node name="shelf_collision_planning_scene" pkg="amazon_challenge_motion" type="shelf_collision_planning_scene">
-    <param name="base_frame_id" value="/base_laser_link"/>
-    <param name="shelf_frame_id" value="/shelf_frame"/>
-    <param name="translation_tolerance" value="0.01"/>
-    <param name="rotation_tolerance" value="0.0873"/>
-  </node>
-	
 
 </launch>
