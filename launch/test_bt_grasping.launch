@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="sim" default="false" />
+  <arg name="contest" default="true" />
 
   <node name="task_manager" pkg="amazon_challenge_bt_actions" type="task_manager" />
 
