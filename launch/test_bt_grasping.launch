@@ -14,9 +14,9 @@
 
   <include file="$(find amazon_challenge_motion)/launch/pregrasp_server.launch" />
   <include file="$(find amazon_challenge_grasping)/launch/grasping_action.launch" />
+  <include file="$(find amazon_challenge_grasping)/launch/detector_action.launch" />
 
   <node name="base_torso_head_init_server" pkg="amazon_challenge_motion" type="base_torso_head_init_server" />
-  <node name="amazon_detector" pkg="amazon_challenge_grasping" type="detector_action.py" output="screen" />
   <node name="object_dropped" pkg="amazon_challenge_bt_actions" type="ObjectDroppedServer" />
   <node name="drop_object" pkg="amazon_challenge_motion" type="dropping_server" output="screen" />
   <node name="arm_posed" pkg="amazon_challenge_bt_actions" type="ArmPosedServer" />
