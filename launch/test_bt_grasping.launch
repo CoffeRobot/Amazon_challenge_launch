@@ -2,23 +2,23 @@
 
   <arg name="contest" default="true" />
 
-  <node name="task_manager" pkg="amazon_challenge_bt_actions" type="task_manager" />
+  <node name="task_manager" pkg="amazon_challenge_bt_actions" type="task_manager" respawn="true"/>
 
-  <node name="remove_object" pkg="amazon_challenge_bt_actions" type="remove_object" />
-  <node name="list_done" pkg="amazon_challenge_bt_actions" type="ListDone" />
+  <node name="remove_object" pkg="amazon_challenge_bt_actions" type="remove_object" respawn="true"/>
+  <node name="list_done" pkg="amazon_challenge_bt_actions" type="ListDone" respawn="true"/>
 
-  <node name="object_grasped" pkg="amazon_challenge_bt_actions" type="ObjectGraspedServer" />
+  <node name="object_grasped" pkg="amazon_challenge_bt_actions" type="ObjectGraspedServer" respawn="true"/>
 
 
-  <node name="tree" pkg="amazon_challenge_bt_core" type="tree" />
+  <node name="tree" pkg="amazon_challenge_bt_core" type="tree" output="screen" respawn="true"/>
 
   <include file="$(find amazon_challenge_motion)/launch/pregrasp_server.launch" />
   <include file="$(find amazon_challenge_grasping)/launch/grasping_action.launch" />
   <include file="$(find amazon_challenge_grasping)/launch/detector_action.launch" />
 
-  <node name="base_torso_head_init_server" pkg="amazon_challenge_motion" type="base_torso_head_init_server" />
-  <node name="object_dropped" pkg="amazon_challenge_bt_actions" type="ObjectDroppedServer" />
-  <node name="drop_object" pkg="amazon_challenge_motion" type="dropping_server" output="screen" />
-  <node name="arm_posed" pkg="amazon_challenge_bt_actions" type="ArmPosedServer" />
+  <node name="base_torso_head_init_server" pkg="amazon_challenge_motion" type="base_torso_head_init_server" respawn="true"/>
+  <node name="object_dropped" pkg="amazon_challenge_bt_actions" type="ObjectDroppedServer" respawn="true"/>
+  <node name="drop_object" pkg="amazon_challenge_motion" type="dropping_server" output="screen" respawn="true"/>
+  <node name="arm_posed" pkg="amazon_challenge_bt_actions" type="ArmPosedServer" respawn="true"/>
 
 </launch>
