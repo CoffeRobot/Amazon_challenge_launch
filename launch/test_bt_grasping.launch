@@ -10,7 +10,7 @@
   <node name="object_grasped" pkg="amazon_challenge_bt_actions" type="ObjectGraspedServer" respawn="true"/>
 
 
-  <node name="tree" pkg="amazon_challenge_bt_core" type="tree" output="screen" respawn="true"/>
+  <node name="tree" pkg="amazon_challenge_bt_core" type="tree" respawn="true"/>
 
   <include file="$(find amazon_challenge_motion)/launch/pregrasp_server.launch" />
   <include file="$(find amazon_challenge_grasping)/launch/grasping_action.launch" />

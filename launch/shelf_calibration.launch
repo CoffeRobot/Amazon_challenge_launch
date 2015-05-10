@@ -6,6 +6,8 @@
     <arg name="contest" value="$(arg contest)" />
   </include>
 
+  <include file="$(find vision)/launch/pr2_cam_switch.launch" />
+
   <node name="shelf_publisher" pkg="amazon_challenge_grasping" type="shelfPublisher.py" output="screen" launch-prefix="xterm -e" respawn="true"/>
   
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find amazon_challenge_motion)/launch/shelf_calibration.rviz" respawn="true"/>
