@@ -2,6 +2,9 @@
 
   <arg name="contest" default="true" />
 
+  <!-- load ROS parameter indicating whether PR2 is cvap or clearpath (with/without force-torque sensors) -->
+  <param name="/contest" value="$(arg contest)"/>
+
   <include file="$(find amazon_challenge_motion)/launch/moveit.launch" >
     <arg name="contest" value="$(arg contest)" />
   </include>

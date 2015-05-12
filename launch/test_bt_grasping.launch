@@ -13,23 +13,23 @@
   <node name="tree" pkg="amazon_challenge_bt_core" type="tree" respawn="true"/>
 
   <include file="$(find amazon_challenge_motion)/launch/base_torso_head_init_server.launch">
-    <arg name="timeout" value="45.0"/>
+    <arg name="timeout" value="90.0"/>
   </include>
 
   <include file="$(find amazon_challenge_grasping)/launch/detector_action.launch">
-    <arg name="timeout" value="45.0"/>
+    <arg name="timeout" value="180.0"/>
   </include>
 
   <include file="$(find amazon_challenge_motion)/launch/pregrasp_server.launch">
-    <arg name="timeout" value="45.0"/>
+    <arg name="timeout" value="90.0"/>
   </include>
 
   <include file="$(find amazon_challenge_grasping)/launch/grasping_action.launch">
-    <arg name="timeout" value="45.0"/>
+    <arg name="timeout" value="90.0"/>
   </include>
 
   <include file="$(find amazon_challenge_motion)/launch/dropping_server.launch">
-    <arg name="timeout" value="45.0"/>
+    <arg name="timeout" value="90.0"/>
   </include>
 
   <node name="object_dropped" pkg="amazon_challenge_bt_actions" type="ObjectDroppedServer" respawn="true"/>
