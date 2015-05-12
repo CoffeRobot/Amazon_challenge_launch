@@ -12,13 +12,27 @@
 
   <node name="tree" pkg="amazon_challenge_bt_core" type="tree" respawn="true"/>
 
-  <include file="$(find amazon_challenge_motion)/launch/pregrasp_server.launch" />
-  <include file="$(find amazon_challenge_grasping)/launch/grasping_action.launch" />
-  <include file="$(find amazon_challenge_grasping)/launch/detector_action.launch" />
+  <include file="$(find amazon_challenge_motion)/launch/base_torso_head_init_server.launch">
+    <arg name="timeout" value="45.0"/>
+  </include>
 
-  <node name="base_torso_head_init_server" pkg="amazon_challenge_motion" type="base_torso_head_init_server" respawn="true"/>
+  <include file="$(find amazon_challenge_grasping)/launch/detector_action.launch">
+    <arg name="timeout" value="45.0"/>
+  </include>
+
+  <include file="$(find amazon_challenge_motion)/launch/pregrasp_server.launch">
+    <arg name="timeout" value="45.0"/>
+  </include>
+
+  <include file="$(find amazon_challenge_grasping)/launch/grasping_action.launch">
+    <arg name="timeout" value="45.0"/>
+  </include>
+
+  <include file="$(find amazon_challenge_motion)/launch/dropping_server.launch">
+    <arg name="timeout" value="45.0"/>
+  </include>
+
   <node name="object_dropped" pkg="amazon_challenge_bt_actions" type="ObjectDroppedServer" respawn="true"/>
-  <node name="drop_object" pkg="amazon_challenge_motion" type="dropping_server" output="screen" respawn="true"/>
   <node name="arm_posed" pkg="amazon_challenge_bt_actions" type="ArmPosedServer" respawn="true"/>
 
 </launch>
