@@ -1,6 +1,7 @@
 <launch>
 
   <arg name="contest" default="true" />
+  <arg name="vision" default="true" />
 
   <!-- load ROS parameter indicating whether PR2 is cvap or clearpath (with/without force-torque sensors) -->
   <param name="/contest" value="$(arg contest)"/>
@@ -9,7 +10,7 @@
     <arg name="contest" value="$(arg contest)" />
   </include>
 
-  <include file="$(find vision)/launch/pr2_cam_switch.launch" />
+  <include file="$(find vision)/launch/pr2_cam_switch.launch" if="$(arg vision)"/>
 
   <node name="shelf_publisher" pkg="amazon_challenge_grasping" type="shelfPublisher.py" output="screen" launch-prefix="xterm -e" respawn="true"/>
   

@@ -1,6 +1,7 @@
 <launch>
 
   <arg name="contest" default="true" />
+  <arg name="vision" default="true" />
 
   <node name="task_manager" pkg="amazon_challenge_bt_actions" type="task_manager" respawn="true"/>
 
@@ -18,6 +19,7 @@
 
   <include file="$(find amazon_challenge_grasping)/launch/detector_action.launch">
     <arg name="timeout" value="120.0"/>
+    <arg name="vision" value="$(arg vision)"/>
   </include>
 
   <include file="$(find amazon_challenge_motion)/launch/pregrasp_server.launch">
