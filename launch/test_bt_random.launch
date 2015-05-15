@@ -3,6 +3,9 @@
   <arg name="contest" default="true" />
   <arg name="vision" default="true" />
 
+  <rosparam command="load" file="$(find pr2_amazon_challenge_sim)/config/test_random.yaml"/>
+
+
   <node name="task_manager" pkg="amazon_challenge_bt_actions" type="task_manager" respawn="true"/>
 
   <node name="remove_object" pkg="amazon_challenge_bt_actions" type="remove_object" respawn="true"/>
