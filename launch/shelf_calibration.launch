@@ -2,6 +2,7 @@
 
   <arg name="contest" default="true" />
   <arg name="vision" default="true" />
+  <arg name="imax" default="true" />
 
   <!-- load ROS parameter indicating whether PR2 is cvap or clearpath (with/without force-torque sensors) -->
   <param name="/contest" value="$(arg contest)"/>
@@ -10,8 +11,11 @@
   <include file="$(find amazon_challenge_motion)/launch/moveit.launch" >
     <arg name="contest" value="$(arg contest)" />
   </include>
-
-  <include file="$(find vision)/launch/pr2_cam_switch.launch" if="$(arg vision)"/>
+  
+  <group if="$(arg vision)">
+    <include file="$(find vision)/launch/pr2_cam_switch.launch" unless="$(arg imax)"/>
+    <include file="$(find vision)/launch/imax.launch" if="$(arg imax)"/>
+  </group>
 
   <node name="shelf_publisher" pkg="amazon_challenge_grasping" type="shelfPublisher.py" output="screen" launch-prefix="xterm -e" respawn="true"/>
   
