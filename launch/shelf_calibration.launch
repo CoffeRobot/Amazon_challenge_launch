@@ -4,6 +4,8 @@
   <arg name="vision" default="true" />
   <arg name="imax" default="true" />
 
+  <machine name="pr2-c1" address="192.168.1.21" env-loader="/home/kaiyuh/catkin_ws/devel/env.sh" user="kaiyuh" />
+
   <!-- load ROS parameter indicating whether PR2 is cvap or clearpath (with/without force-torque sensors) -->
   <param name="/contest" value="$(arg contest)"/>
   <rosparam command="load" file="$(find amazon_challenge_grasping)/config/base_scan.yaml" />
@@ -17,7 +19,7 @@
     <include file="$(find vision)/launch/imax.launch" if="$(arg imax)"/>
   </group>
 
-  <node name="shelf_publisher" pkg="amazon_challenge_grasping" type="shelfPublisher.py" output="screen" launch-prefix="xterm -e" respawn="true"/>
+  <node machine="pr2-c1" name="shelf_publisher" pkg="amazon_challenge_grasping" type="shelfPublisher.py" output="screen" respawn="true"/>
   
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find amazon_challenge_motion)/launch/shelf_calibration.rviz" respawn="true"/>
   
