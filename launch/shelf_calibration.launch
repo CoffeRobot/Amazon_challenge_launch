@@ -9,6 +9,8 @@
   <!-- load ROS parameter indicating whether PR2 is cvap or clearpath (with/without force-torque sensors) -->
   <param name="/contest" value="$(arg contest)"/>
   <rosparam command="load" file="$(find amazon_challenge_grasping)/config/base_scan.yaml" />
+  <!-- base move parameters -->
+  <rosparam command="load" file="$(find amazon_challenge_grasping)/config/base_move.yaml" />
 
   <include file="$(find amazon_challenge_motion)/launch/moveit.launch" >
     <arg name="contest" value="$(arg contest)" />
