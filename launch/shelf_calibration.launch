@@ -3,6 +3,7 @@
   <arg name="contest" default="true" />
   <arg name="vision" default="true" />
   <arg name="imax" default="true" />
+  <arg name="remote" default="true" />
 
   <machine name="pr2-c1" address="192.168.1.21" env-loader="/home/kaiyuh/catkin_ws/devel/env.sh" user="kaiyuh" />
 
@@ -21,7 +22,11 @@
     <include file="$(find vision)/launch/imax.launch" if="$(arg imax)"/>
   </group>
 
-  <node machine="pr2-c1" name="shelf_publisher" pkg="amazon_challenge_grasping" type="shelfPublisher.py" output="screen" respawn="true"/>
+  <node machine="pr2-c1" name="shelf_publisher" pkg="amazon_challenge_grasping" type="shelfPublisher.py" output="screen" respawn="true" if="$(arg remote)"/>
+  <node name="shelf_publisher" pkg="amazon_challenge_grasping" type="shelfPublisher.py" output="screen" respawn="true" unless="$(arg remote)"/>
+
+  <node machine="pr2-c1" name="base_move_server" pkg="amazon_challenge_grasping" type="base_move_server" output="screen" respawn="true" if="$(arg remote)"/>
+  <node name="base_move_server" pkg="amazon_challenge_grasping" type="base_move_server" output="screen" respawn="true" unless="$(arg remote)"/>
   
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find amazon_challenge_motion)/launch/shelf_calibration.rviz" respawn="true"/>
   
