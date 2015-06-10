@@ -1,11 +1,11 @@
 <launch>
 
-  <arg name="contest" default="true" />
+  <arg name="contest" default="false" />
   <arg name="vision" default="true" />
   <arg name="imax" default="true" />
   <arg name="remote" default="true" />
 
-  <machine name="pr2-c1" address="192.168.1.21" env-loader="/home/kaiyuh/catkin_ws/devel/env.sh" user="kaiyuh" />
+  <machine name="pr2-c1" address="192.168.1.21" env-loader="/home/pr2admin/catkin_ws/devel/env.sh" user="pr2admin" />
 
   <!-- load ROS parameter indicating whether PR2 is cvap or clearpath (with/without force-torque sensors) -->
   <param name="/contest" value="$(arg contest)"/>
@@ -18,7 +18,6 @@
   </include>
   
   <group if="$(arg vision)">
-    <include file="$(find vision)/launch/pr2_cam_switch.launch" unless="$(arg imax)"/>
     <include file="$(find vision)/launch/imax.launch" if="$(arg imax)"/>
   </group>
 
