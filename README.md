@@ -32,7 +32,7 @@ Set the exposure (manual) to 600, autofocus off, focus to zero.
 ```
 #!python
 
-roslaunch amazon_challenge_launch shelf_calibration.launch
+roslaunch amazon_challenge_launch shelf_calibration.launch contest:=false
 ```
 
 * Launch the behavior tree stuff:
